@@ -36,7 +36,7 @@ find "$input_dir" -name "*_1.fastq" | while read -r forward_file; do
     "$termo_out_reverse_paired" "$termo_out_reverse_unpaired" \
     ILLUMINACLIP:"$adapter_file":2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 || { echo "Trimmomatic failed for sample: $sample"; exit 1; }
  # Step 5: Alignment
-  bwa mem  -t 16 "$reference_genome_dir/Homo_sapiens_assembly38.fasta" \
+  bwa mem  "$reference_genome_dir/Homo_sapiens_assembly38.fasta" \
     "$termo_out_forward_paired" "$termo_out_reverse_paired" > "$aligned_sam"
 
   # Step 6: Conversion to BAM format
